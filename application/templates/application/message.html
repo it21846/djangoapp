@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ application.message }}{% endblock %}
+
+{% block content %}
+<div class="grid grid-cols-5 gap-6">
+    <div class="col-span-2 p-6 bg-gray-100 rounded-xl">
+        <p class="text-gray-500"><strong>Destination University: </strong>{{ application.appuniname }}</p>
+        <p class="text-gray-500"><strong>Sender: </strong>{{ application.created_by.username }}</p>
+    
+        {% if application.message %}
+            <p class="text-gray-700">
+                <strong class="text-gray-500">Message:</strong><br>
+                {{ application.message }}
+            </p>
+        {% endif %}
+
+        <p class="text-gray-500"><strong>State: </strong>{{ application.appstate }}</p>
+    </div>
+</div>
+
+<div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+    <h2 class="mb-12 text-2xl text-center">Related applications</h2>
+
+    <div class="grid grid-cols-3 gap-3">
+        {% for application in related_applications %}
+            <div>
+                <a href="{% url 'application:message' application.id %}">
+                    <div class="p-6 bg-white rounded-b-xl">
+                        <h2 class="text-2xl">{{ application.appuniname }}</h2>
+                        <p class="text-gray-500">Sender: {{ application.created_by.username }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
