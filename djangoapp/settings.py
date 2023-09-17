@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ['localhost', '0.0.0.0']
 LOGIN_URL = '/login/'
 LOGIN_REDIRECTURL = '/'
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
 
